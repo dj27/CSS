@@ -1,0 +1,71 @@
+
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+int gcd(int n1, int n2)
+{
+    while(n1!=n2)
+    {
+        if(n1 > n2)
+            n1 -= n2;
+        else
+            n2 -= n1;
+    }
+ 
+
+}
+
+void main()
+{
+    int i,p,q,b,n,c,d,A,B,C,D,E,M;
+    int e=2;
+    int k=1;
+    printf("\n Enter the values of p and q");
+    scanf("%d",&p);
+    scanf("%d",&q);
+    n=p*q;
+    b=(p-1)*(q-1);
+    printf("\n The value of phi(n) is %d",b);
+    while(e<=b)
+    {
+    c=gcd(b,e);
+    if (c==1)
+    {
+    break;
+    }
+    else
+    {
+    e++;
+    }
+    }
+    printf("\n The value of GCD is %d",c);
+    printf("\n The value of e is %d ",e);
+    for (i=1;i<100;i++)
+    {
+    D=(k*b+1)%e;
+    if (D==0)
+    {
+        break;
+    }
+    else
+    {
+        k++;
+    }
+    }
+    printf("\n Value of k is %d",k);
+    d=(k*b+1)/e;
+    printf("\n Public key is {%d ,%d}",d,n);
+    printf("\n Private key is {%d ,%d}",e,n);
+    printf("\n Enter the message");
+    scanf("%d",&M);
+    C=pow(M,e);
+    C=C%n;
+    printf("Encrypted Message is %d",C);
+    B=pow(C,d);
+    B=B%n;
+    printf("Decrypted Message is %d",B);
+    
+    getch();
+    
+    
+}
